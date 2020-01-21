@@ -26,6 +26,14 @@ class UserRegistrationForm(UserCreationForm):
         model=User
         fields=['username','first_name','last_name','email','password1','password2']
 
+    def clean_email(self):
+        email=self.cleaned_data.get('email')
+        if User.objects.filter(email=email):
+            raise forms.ValidationError("Email already Exists")
+    
+        return email
+
+
 
 class LoginForm(AuthenticationForm):
     def __init__(self,*args,**kwards):
