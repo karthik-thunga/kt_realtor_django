@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'pages.apps.PagesConfig',
+    'contact.apps.ContactConfig',
     'listings.apps.ListingsConfig',
     'realtors.apps.RealtorsConfig',
     'django.contrib.admin',
@@ -138,3 +139,20 @@ MEDIA_URL = '/media/'
 
 # login
 LOGIN_REDIRECT_URL = '/'
+
+# Changing message tags to match bootstrap
+
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
+
+# Email configuration
+
+EMAIL_HOST='smtp.gmail.com'
+EMIAL_PORT=587
+EMAIL_HOST_USER=os.environ.get('email_host_name')
+EMAIL_HOST_PASSWORD=os.environ.get('email_host_password')
+EMAIL_USE_TLS=True
+
+
